@@ -41,8 +41,8 @@ cd helloworld
 flutter run
 2
 
-
-
+visual studio code에서 새 플러터 폴더 생성
+ctrl shift  p > new flutter
 
 
 
