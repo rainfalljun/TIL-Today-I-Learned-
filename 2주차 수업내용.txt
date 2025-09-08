@@ -21,6 +21,16 @@
 cmd 활성(win+r)
 git --version
 
+Quick setup의 주소 복사 >> TIL-Today-I-Learned-.git
+
+ git clone https://github.com/rainfalljun/TIL-Today-I-Learned-.git
+cd TIL-Today-I-Learned-.git
+메모를 git 폴더로 옮기기
+git add .
+git commit -m "2주차 수업 내용 업로드"
+git push origin main
+
+
 플러터 설치
 flutter docs-> install flutter
 환경변수 설정
