@@ -1,0 +1,25 @@
+#위젯 시스템
+플러터 위젯 트리
+
+#레이아웃 위젯
+*container(위젯) / 박스모델(용도) / padding, margin, decoration(주요속성)
+*row(위젯) / 자식들을 수평으로 배치(용도) / children, mainAxisAlignment, crossAxisAlignment(주요속성)
+*column(위젯) / 자식들을 수직으로 배치(용도) / children, mainAxisAlignment, crossAxisAlignment(주요속성)
+*stack(위젯) / 자식들을 겹겹이 쌓음(용도) / children, alignment(주요속성)
+*positioned(위젯) / stack 내 자식의 위치 지정(용도) / top, bottom, left, right(주요속성)
+
+#네비게이터의 put, push => stack 구조
+
+#
+
+
+#깃허브 파일 추가방법
+터미널 열어서 cd TIL-Today-I-Learned-
+git add "5주차 수업내용.txt"
+git commit -m "5주차 수업 내용 업로드"
+git push origin main
+
+
+
+
+.
