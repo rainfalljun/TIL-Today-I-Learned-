@@ -1,0 +1,228 @@
+#dart 실습 - '#'으로 x 자 그리기
+1. 반복문 없이 print 함수만으로 구현
+2. 반복문과 조건문을 이용해서 print 함수로
+3. 정사각형 격자를 포함한 x자 그리기
+
+void main() {
+  print("X   X");
+  print(" X X ");
+  print("  X  ");
+  print(" X X");
+  print("X   X");
+
+  print("");
+  print("");
+
+  int size = 7;
+  for (int i = 0; i < size; i++) {
+    String line = "";
+    for (int j = 0; j < size; j++) {
+      if (j == i || j == size - 1 - i) {
+        line += "X";
+      } else {
+        line += " ";
+      }
+    }
+    print(line);
+  }
+
+  print("");
+  print("");
+
+  size = 9;
+  for (int i = 0; i < size; i++) {
+    String line = "";
+    for (int j = 0; j < size; j++) {
+      if (i == 0 || i == size - 1 || j == 0 || j == size - 1) {
+        line += "X";
+      } else if ((j == i || j == size - 1 - i) &&
+          i > 0 &&
+          i < size - 1 &&
+          j > 0 &&
+          j < size - 1) {
+        line += "X";
+      } else {
+        line += " ";
+      }
+    }
+    print(line);
+  }
+
+  print("");
+  print("");
+
+  int n = 5; // 산 높이와 반복 횟수 모두 n으로 결정
+
+  int width = 2 * n - 1; // 한 산의 가로 너비
+ 
+  for (int i = 0; i < n; i++) {
+    String line = "";
+    for (int r = 0; r < n; r++) {
+      for (int j = 0; j < width; j++) {
+        // 산의 양쪽 대각선에 '#' 출력
+        if (j == n - 1 - i || j == n - 1 + i) {
+          line += "#";
+        } else {
+          line += " ";
+        }
+      }
+      line += " "; // 산과 산 사이 간격
+    }
+    print(line);
+  }
+
+  print("");
+  print("");
+
+  n = 4; // 산 높이와 반복 횟수 모두 n으로 결정
+
+  width = 2 * n - 1; // 한 산의 가로 너비
+
+  for (int i = 0; i < n; i++) {
+    String line = "";
+    for (int r = 0; r < n; r++) {
+      for (int j = 0; j < width; j++) {
+        // 산의 양쪽 대각선에 '#' 출력
+        if (j == n - 1 - i || j == n - 1 + i) {
+          line += "#";
+        } else {
+          line += " ";
+        }
+      }
+      line += " "; // 산과 산 사이 간격
+    }
+    print(line);
+  }
+
+  print("");
+  print("");
+  
+  
+    n = 3; // 산 높이와 반복 횟수 모두 n으로 결정
+
+  width = 2 * n - 1; // 한 산의 가로 너비
+
+  for (int i = 0; i < n; i++) {
+    String line = "";
+    for (int r = 0; r < n; r++) {
+      for (int j = 0; j < width; j++) {
+        // 산의 양쪽 대각선에 '#' 출력
+        if (j == n - 1 - i || j == n - 1 + i) {
+          line += "#";
+        } else {
+          line += " ";
+        }
+      }
+      line += " "; // 산과 산 사이 간격
+    }
+    print(line);
+  }
+
+  print("");
+  print("");
+  
+    n = 2; // 산 높이와 반복 횟수 모두 n으로 결정
+
+  width = 2 * n - 1; // 한 산의 가로 너비
+
+  for (int i = 0; i < n; i++) {
+    String line = "";
+    for (int r = 0; r < n; r++) {
+      for (int j = 0; j < width; j++) {
+        // 산의 양쪽 대각선에 '#' 출력
+        if (j == n - 1 - i || j == n - 1 + i) {
+          line += "#";
+        } else {
+          line += " ";
+        }
+      }
+      line += " "; // 산과 산 사이 간격
+    }
+    print(line);
+  }
+
+  print("");
+  print("");
+  
+  
+    n = 1; // 산 높이와 반복 횟수 모두 n으로 결정
+
+  width = 2 * n - 1; // 한 산의 가로 너비
+
+  for (int i = 0; i < n; i++) {
+    String line = "";
+    for (int r = 0; r < n; r++) {
+      for (int j = 0; j < width; j++) {
+        // 산의 양쪽 대각선에 '#' 출력
+        if (j == n - 1 - i || j == n - 1 + i) {
+          line += "#";
+        } else {
+          line += " ";
+        }
+      }
+      line += " "; // 산과 산 사이 간격
+    }
+    print(line);
+  }
+
+  print("");
+  print("");
+}
+X   X
+ X X 
+  X  
+ X X
+X   X
+
+
+X     X
+ X   X 
+  X X  
+   X   
+  X X  
+ X   X 
+X     X
+
+
+XXXXXXXXX
+XX     XX
+X X   X X
+X  X X  X
+X   X   X
+X  X X  X
+X X   X X
+XX     XX
+XXXXXXXXX
+
+
+    #         #         #         #         #     
+   # #       # #       # #       # #       # #    
+  #   #     #   #     #   #     #   #     #   #   
+ #     #   #     #   #     #   #     #   #     #  
+#       # #       # #       # #       # #       # 
+
+
+   #       #       #       #    
+  # #     # #     # #     # #   
+ #   #   #   #   #   #   #   #  
+#     # #     # #     # #     # 
+
+
+  #     #     #   
+ # #   # #   # #  
+#   # #   # #   # 
+
+
+ #   #  
+# # # # 
+
+
+# 
+
+
+ 
+#깃허브 파일 추가방법
+터미널 열어서 cd TIL-Today-I-Learned-
+git add "7주차 수업내용.txt"
+git commit -m "7주차 수업 내용 업로드"
+git push origin main
