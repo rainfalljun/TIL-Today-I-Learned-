@@ -1,0 +1,172 @@
+
+ 
+#깃허브 파일 추가방법
+터미널 열어서 cd TIL-Today-I-Learned-
+git add "9주차 수업내용.txt"
+git commit -m "9주차 수업 내용 업로드"
+git push origin main
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // MaterialApp에서 const를 제거하여 AppBar가 const일 필요가 없도록 합니다.
+    return MaterialApp( 
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('위아래 직사각형 배치'),
+          backgroundColor: Colors.blueGrey,
+        ),
+        body: Center(
+          // Column을 사용하여 두 직사각형을 '위 아래'로 배치합니다.
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center, // 화면 중앙 수직 정렬
+            children: <Widget>[
+              // 1. 위에 배치할 빨간색 직사각형
+              Container(
+                width: 100,
+                height: 40,
+                color: Colors.red, // 빨간색 지정
+                margin: const EdgeInsets.only(bottom: 10), // 아래 직사각형과의 간격
+              ),
+              
+              // 2. 아래에 배치할 파란색 직사각형
+              Container(
+                width: 100,
+                height: 40,
+                color: Colors.blue, // 파란색 지정
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// lib/main.dart 파일 전체 코드 (오류 수정)
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // 1. MaterialApp 앞의 const를 제거하여 AppBar와 Scaffold가 const일 필요 없게 만듭니다.
+    return MaterialApp( 
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        // 2. AppBar의 const를 제거하여 오류를 해결합니다.
+        appBar: AppBar( 
+          title: const Text('AnimatedContainer 단일 구현'),
+          backgroundColor: Colors.indigo,
+        ),
+        body: const Center( // Center와 그 자식은 const로 유지하여 최적화
+          child: AnimatedWidgetScreen(), // 단일 위젯만 표시
+        ),
+      ),
+    );
+  }
+}
+
+// (이하 AnimatedWidgetScreen 클래스는 이전 답변의 코드와 동일하게 유지됩니다.)
+// ...
+
+class AnimatedWidgetScreen extends StatefulWidget {
+  const AnimatedWidgetScreen({super.key});
+
+  @override
+  State<AnimatedWidgetScreen> createState() => _AnimatedWidgetScreenState();
+}
+
+class _AnimatedWidgetScreenState extends State<AnimatedWidgetScreen> {
+  // 초기 상태 값
+  double _width = 100.0;
+  double _height = 100.0;
+  Color _color = Colors.blue;
+  double _opacity = 1.0;
+  BoxShape _shape = BoxShape.circle;
+
+  // 버튼을 누를 때 호출될 함수
+  void _toggleAnimation() {
+    setState(() {
+      // 현재 상태에 따라 다음 상태를 설정합니다.
+      if (_width == 100.0) {
+        // 상태 1 -> 상태 2 (더 커지고, 빨간 사각형으로)
+        _width = 150.0;
+        _height = 150.0;
+        _color = Colors.red;
+        _opacity = 0.5;
+        _shape = BoxShape.rectangle;
+      } else {
+        // 상태 2 -> 상태 1 (초기 상태로 복귀)
+        _width = 100.0;
+        _height = 100.0;
+        _color = Colors.blue;
+        _opacity = 1.0;
+        _shape = BoxShape.circle;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        // AnimatedContainer: 속성이 변경되면 지정된 duration 동안 애니메이션 됩니다.
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 700), // 애니메이션 시간
+          curve: Curves.easeInOut, // 부드러운 애니메이션 효과
+          
+          // 애니메이션 속성들
+          width: _width,
+          height: _height,
+          
+          // 이미지가 보여주는 opacity 효과를 내기 위해 Opacity 위젯을 사용
+          child: Opacity(
+            opacity: _opacity,
+            child: Container(
+              decoration: BoxDecoration(
+                color: _color,
+                shape: _shape,
+                // BoxShadow 예시: 이미지가 보여주는 BoxDecoration의 추가 속성
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 5.0,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 50),
+
+        // 상태를 변경할 버튼
+        ElevatedButton(
+          onPressed: _toggleAnimation, // 상태 변경 함수 호출
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.indigo,
+            foregroundColor: Colors.white,
+          ),
+          child: const Text('변경하기'),
+        ),
+      ],
+    );
+  }
+}
