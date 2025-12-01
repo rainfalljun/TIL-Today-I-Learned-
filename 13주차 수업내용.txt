@@ -1,0 +1,8 @@
+#깃허브 파일 추가방법
+터미널 열어서 cd TIL-Today-I-Learned-
+git add "13주차 수업내용.txt"
+git commit -m "13주차 수업 내용 업로드"
+git push origin main
+
+
+밤톨마켓 17챕터까지 라이브코딩
