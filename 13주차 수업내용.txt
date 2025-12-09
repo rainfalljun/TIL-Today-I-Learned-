@@ -1,8 +1,124 @@
-#깃허브 파일 추가방법
+﻿#깃허브 파일 추가방법
 터미널 열어서 cd TIL-Today-I-Learned-
 git add "13주차 수업내용.txt"
 git commit -m "13주차 수업 내용 업로드"
 git push origin main
 
 
-밤톨마켓 17챕터까지 라이브코딩
+밤톨마켓 17챕터까지 라이브코딩 (업데이트: 2025-12-09)
+
+## 프로젝트 구조
+- GetX 패턴 사용 (컨트롤러, 페이지, 바인딩)
+- 라우팅 설정
+- 홈, 채팅, 프로필, 상품 상세, 상품 등록, 검색 기능 구현
+
+## 주요 파일
+
+### 1. main.dart
+`dart
+import 'package:bamtol_market_app/src/app.dart';
+import 'package:bamtol_market_app/src/controllers/chat_controller.dart';
+import 'package:bamtol_market_app/src/controllers/chat_detail_controller.dart';
+import 'package:bamtol_market_app/src/controllers/home_controller.dart';
+import 'package:bamtol_market_app/src/controllers/main_navigation_controller.dart';
+import 'package:bamtol_market_app/src/controllers/product_detail_controller.dart';
+import 'package:bamtol_market_app/src/controllers/product_write_controller.dart';
+import 'package:bamtol_market_app/src/controllers/profile_controller.dart';
+import 'package:bamtol_market_app/src/controllers/search_controller.dart' as app_search;
+import 'package:bamtol_market_app/src/pages/chat_detail/chat_detail_page.dart';
+import 'package:bamtol_market_app/src/pages/product_detail/product_detail_page.dart';
+import 'package:bamtol_market_app/src/pages/product_write/product_write_page.dart';
+import 'package:bamtol_market_app/src/pages/search/search_page.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: '당근마켓 클론코딩',
+      initialRoute: '/',
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          color: Color(0xff212123),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        scaffoldBackgroundColor: const Color(0xff212123),
+      ),
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => const App(),
+          binding: BindingsBuilder(() {
+            Get.lazyPut(() => MainNavigationController());
+            Get.lazyPut(() => HomeController());
+            Get.lazyPut(() => ChatController());
+            Get.lazyPut(() => ProfileController());
+          }),
+        ),
+        GetPage(
+          name: '/product-detail',
+          page: () => const ProductDetailPage(),
+          binding: BindingsBuilder(() {
+            Get.lazyPut(() => ProductDetailController());
+          }),
+        ),
+        GetPage(
+          name: '/product-write',
+          page: () => const ProductWritePage(),
+          binding: BindingsBuilder(() {
+            Get.lazyPut(() => ProductWriteController());
+          }),
+        ),
+        GetPage(
+          name: '/chat-detail',
+          page: () => const ChatDetailPage(),
+          binding: BindingsBuilder(() {
+            Get.lazyPut(() => ChatDetailController());
+          }),
+        ),
+        GetPage(
+          name: '/search',
+          page: () => const SearchPage(),
+          binding: BindingsBuilder(() {
+            Get.lazyPut(() => app_search.SearchController());
+          }),
+        ),
+      ],
+    );
+  }
+}
+`
+
+## 주요 기능
+
+### GetX 상태관리
+- 각 페이지마다 컨트롤러 생성
+- BindingsBuilder를 통한 의존성 주입
+- lazyPut으로 효율적인 메모리 관리
+
+### 라우팅
+- GetPage를 통한 명명된 라우트 설정
+- / (홈), /product-detail, /product-write, /chat-detail, /search
+
+### 다크 테마
+- scaffoldBackgroundColor: Color(0xff212123)
+- AppBar 색상 통일
+
+### 구현된 페이지
+1. 홈 페이지 - 상품 목록
+2. 채팅 페이지 - 채팅방 목록
+3. 프로필 페이지 - 사용자 정보
+4. 상품 상세 페이지
+5. 상품 등록 페이지
+6. 채팅 상세 페이지
+7. 검색 페이지
